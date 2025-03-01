@@ -29,7 +29,7 @@ MediFusion consists of the following key systems:
 ## 👥 Contributors
 
 ### Appointment & Review System
-- **Dhanasree**
+- **Dhanasree Gidijala**
 - **Ridhima**
 - **Tasneem**
 
@@ -39,7 +39,7 @@ MediFusion consists of the following key systems:
 - **Afreen**
 
 ### Integration of All Systems
-- **Dhanasree**
+- **Dhanasree Gidijala**
 - **Vinutna Boyapati**
 
 ##  Tech Stack
