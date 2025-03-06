@@ -35,7 +35,7 @@ MediFusion consists of the following key systems:
 
 ### Reminder & Red Alert System
 - **Vinutna Boyapati**
-- **Malavika**
+- **Malavika Badam**
 - **Afreen**
 
 ### Integration of All Systems
