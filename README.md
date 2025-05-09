@@ -7,21 +7,25 @@ MediFusion is a comprehensive healthcare management system designed to streamlin
 MediFusion consists of the following key systems:
 
 ### 1. Appointment System
+
 - Allows patients to schedule appointments with doctors.
 - Provides real-time availability of doctors.
 - Ensures hassle-free booking and rescheduling.
 
 ### 2. Review System
+
 - Enables patients to provide feedback on their medical experience.
 - Helps improve service quality by analyzing patient reviews.
 - Maintains transparency between healthcare providers and users.
 
 ### 3. Reminder System
+
 - Provides timely reminders to help patients take medicine via WhatsApp.
 - Helps patients adhere to their prescribed treatments.
 - Reduces the risk of missed medications.
 
 ### 4. Red Alert System
+
 - Detects and alerts users of potential disease outbreaks in their area.
 - Can be used for urgent medical attention requests.
 - Provides a quick response mechanism for users.
@@ -29,20 +33,23 @@ MediFusion consists of the following key systems:
 ## 👥 Contributors
 
 ### Appointment & Review System
+
 - **Dhanasree Gidijala**
 - **Ridhima**
 - **Tasneem**
 
 ### Reminder & Red Alert System
+
 - **Vinutna Boyapati**
 - **Malavika Badam**
 - **Afreen**
 
 ### Integration of All Systems
+
 - **Dhanasree Gidijala**
 - **Vinutna Boyapati**
 
-##  Tech Stack
+## Tech Stack
 
 - **Client:** React, TypeScript, Redux Toolkit, Material UI, Formik
 - **API Handlers:** RTK Query
@@ -50,7 +57,7 @@ MediFusion consists of the following key systems:
 - **Database:** MongoDB
 - **Communication Service:** Twilio Messaging API
 
-##  How to Setup Twilio
+## How to Setup Twilio
 
 1. Go to the Twilio website: [Twilio Signup](https://www.twilio.com/)
 2. Register on Twilio.
@@ -66,6 +73,7 @@ MediFusion consists of the following key systems:
 ### Doctor Appointment System
 
 #### Server
+
 ```sh
 cd server
 npm install
@@ -73,6 +81,7 @@ npm start
 ```
 
 #### Client
+
 ```sh
 cd client
 npm install
@@ -82,6 +91,7 @@ npm start
 ### Reminder System
 
 #### Backend
+
 ```sh
 cd Backend
 npm install
@@ -89,17 +99,19 @@ npm start
 ```
 
 #### Frontend
+
 ```sh
 cd Frontend
 npm install
 npm start
 ```
 
-##  Environment Variables
+## Environment Variables
 
 To run this project, add the following environment variables to your .env file:
 
 #### Backend
+
 ```sh
 NODE_ENV=development
 PORT=5000
@@ -107,18 +119,22 @@ DATABASE=Insert your MongoDB database connection link
 ```
 
 #### Frontend
+
 ```sh
 REACT_APP_API_URL='http://127.0.0.1:5000/api/v1/'
 ```
 
-##  API Reference
+## API Reference
 
 #### Routes
+
 ```sh
 Endpoint: http://127.0.0.1:5000/api/v1/users
 Endpoint: http://127.0.0.1:5000/api/v1/doctors
 ```
+
 #### Users API
+
 **Signup**
 
 - Method: POST
@@ -241,6 +257,6 @@ Endpoint: http://127.0.0.1:5000/api/v1/doctors
 
 - Endpoint: /check-booking-availability
 
-##  License
+## License
 
 This project is licensed under the **MIT License**.
