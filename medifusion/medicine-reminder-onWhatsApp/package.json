@@ -1,0 +1,19 @@
+{
+  "dependencies": {
+    "express": "^4.21.1",
+    "mongodb": "^6.9.0",
+    "mongoose": "^8.7.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "name": "medicine-reminder-onwhatsapp",
+  "description": "The medicine reminder system ensures users never miss their medications by sending timely reminders via WhatsApp. It was developed to improve medication adherence and enhance patient well-being.",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

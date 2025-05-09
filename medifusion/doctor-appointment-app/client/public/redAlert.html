@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Red Alert System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+            background-image: url('redalert1.jpg');
+            /* Add your image file here */
+            background-size: cover;
+            /* Ensures the background image covers the entire viewport */
+            background-position: center;
+            /* Centers the background image */
+            background-repeat: no-repeat;
+            /* Prevents image tiling */
+            background-attachment: fixed;
+            /* Keeps the background image fixed when scrolling */
+        }
+
+        h1 {
+            color: #d9534f;
+        }
+
+        .container {
+            max-width: 600px;
+            margin-top: 50px;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            /* Adds a semi-transparent white background for readability */
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            font-weight: bold;
+            color: #333;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #d9534f;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: transform 0.3s;
+            animation: bounce 2s infinite;
+            /* Adds bounce effect */
+        }
+
+        button:hover {
+            background-color: #c9302c;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translateY(0);
+            }
+
+            40% {
+                transform: translateY(-10px);
+            }
+
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        .alert-info,
+        .no-alert {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 4px;
+            display: none;
+            /* Initially hidden */
+        }
+
+        .alert-info {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .no-alert {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .precautions {
+            margin-top: 10px;
+            padding-left: 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Red Alert System</h1>
+        <p>Check if there is a disease outbreak alert in your locality.</p>
+
+        <div class="form-group">
+            <label for="location">Enter Location:</label>
+            <input type="text" id="location" placeholder="Enter your city or area">
+        </div>
+
+        <button onclick="checkRedAlert()">Check Red Alert</button>
+
+        <div class="alert-info" id="alertInfo">
+            <p id="alertMessage"><strong>Alert:</strong> A disease outbreak has been detected in your area. Please take
+                necessary precautions.</p>
+            <div class="precautions" id="precautionsList">
+                <!-- Precautions will be listed here -->
+            </div>
+        </div>
+
+        <div class="no-alert" id="noAlert">
+            <p><strong>No Red Alert:</strong> No disease outbreak has been detected in your area.</p>
+        </div>
+    </div>
+
+    <script>
+        // Patient data
+        const patientData = [
+            { id: '001', age: 45, gender: 'Male', locality: 'Area A', disease: 'Flu', appointmentDate: '2024-09-12', doctorConfirmed: true, confirmedCasesInLocality: 10 },
+            { id: '002', age: 30, gender: 'Female', locality: 'Area A', disease: 'Flu', appointmentDate: '2024-09-13', doctorConfirmed: true, confirmedCasesInLocality: 10 },
+            { id: '003', age: 50, gender: 'Male', locality: 'Area B', disease: 'Malaria', appointmentDate: '2024-09-13', doctorConfirmed: true, confirmedCasesInLocality: 5 },
+            { id: '004', age: 28, gender: 'Female', locality: 'Area A', disease: 'Flu', appointmentDate: '2024-09-14', doctorConfirmed: false, confirmedCasesInLocality: 10 },
+            { id: '005', age: 35, gender: 'Male', locality: 'Area B', disease: 'Malaria', appointmentDate: '2024-09-15', doctorConfirmed: true, confirmedCasesInLocality: 6 }
+        ];
+
+        // Precautions for each disease
+        const diseasePrecautions = {
+            "Flu": [
+                "Stay hydrated and get plenty of rest.",
+                "Avoid close contact with others.",
+                "Wash your hands frequently with soap and water.",
+                "Cover your mouth and nose when sneezing or coughing."
+            ],
+            "Malaria": [
+                "Use mosquito repellent.",
+                "Sleep under a mosquito net.",
+                "Wear long-sleeved clothing.",
+                "Avoid areas with high mosquito activity."
+            ]
+        };
+
+        const threshold = 10; // Set a threshold for confirmed cases
+
+        function checkRedAlert() {
+            let location = document.getElementById("location").value.trim();
+            let alertInfo = document.getElementById("alertInfo");
+            let alertMessage = document.getElementById("alertMessage");
+            let precautionsList = document.getElementById("precautionsList");
+            let noAlert = document.getElementById("noAlert");
+
+            // Hide both alert boxes initially
+            alertInfo.style.display = "none";
+            noAlert.style.display = "none";
+
+            if (location) {
+                // Filter confirmed cases for the input locality
+                let confirmedCases = patientData.filter(
+                    patient => patient.locality.toLowerCase() === location.toLowerCase() && patient.doctorConfirmed
+                );
+
+                // Group by disease and sum confirmed cases
+                let diseaseCounts = confirmedCases.reduce((acc, patient) => {
+                    acc[patient.disease] = (acc[patient.disease] || 0) + patient.confirmedCasesInLocality;
+                    return acc;
+                }, {});
+
+                // Check if any disease meets the threshold
+                let alertDisease = null;
+                for (let disease in diseaseCounts) {
+                    if (diseaseCounts[disease] >= threshold) {
+                        alertDisease = disease;
+                        break;
+                    }
+                }
+
+                // Display alert if a disease meets the threshold
+                if (alertDisease) {
+                    `
+                    alertMessage.innerHTML = <strong>Alert:</strong> A ${alertDisease} outbreak has been detected in your area.Please take necessary precautions.;
+
+                    // Display precautions for the disease
+                    precautionsList.innerHTML = "<strong>Precautions:</strong><ul>" +
+                        diseasePrecautions[alertDisease].map(precaution => <li>${precaution}</li>).join('') +
+                        "</ul>";
+
+                    alertInfo.style.display = "block";`
+                } else {
+                    // If no disease meets the threshold, show the green no-alert message
+                    noAlert.style.display = "block";
+                }
+            } else {
+                alert("Please enter a location.");
+            }
+        }
+    </script>
+
+</body>
+
+</html>
