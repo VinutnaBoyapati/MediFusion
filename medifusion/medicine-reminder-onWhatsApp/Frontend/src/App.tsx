@@ -18,14 +18,14 @@ function MedicineReminder() {
   const [reminderList, setReminderList] = useState<Reminder[]>([]); // Use the Reminder type here
 
   useEffect(() => {
-    axios.get("http://localhost:9000/api/reminders")
+    axios.get("https://reminder-backend-worf.onrender.com/api/reminders")
       .then(res => setReminderList(res.data))
       .catch(error => console.error("Failed to fetch reminders:", error));
   }, []);
 
   const addReminder = () => {
     if (reminderMsg && remindAt) {
-      axios.post("http://localhost:9000/api/reminders", { reminderMsg, remindAt })
+      axios.post("https://reminder-backend-worf.onrender.com/api/reminders", { reminderMsg, remindAt })
         .then(res => setReminderList(res.data))
         .catch(error => console.error("Failed to add reminder:", error));
       setReminderMsg("");
@@ -36,7 +36,7 @@ function MedicineReminder() {
   };
 
   const deleteReminder = (id: string) => {
-    axios.delete(`http://localhost:9000/api/reminders/${id}`)
+    axios.delete(`https://reminder-backend-worf.onrender.com/api/reminders/${id}`)
       .then(res => setReminderList(res.data))
       .catch(error => console.error("Failed to delete reminder:", error));
   };
