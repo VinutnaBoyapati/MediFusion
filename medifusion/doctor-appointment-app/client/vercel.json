@@ -2,7 +2,7 @@
   "version": 2,
   "builds": [
     {
-      "NPM_CONFIG_LEGACY_PEER_DEPS": "true",
+      
       "src": "doctor-appointment-app/client/package.json",
       "use": "@vercel/static-build",
       "config": {
