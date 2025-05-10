@@ -2,15 +2,20 @@
   "version": 2,
   "builds": [
     {
-      "src": "package.json",
-      "use": "@vercel/static-build"
+      "NPM_CONFIG_LEGACY_PEER_DEPS": "true",
+      "src": "doctor-appointment-app/client/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "doctor-appointment-app/client/build"
+      }
+
     }
   ],
-  "buildCommand": "npm install --legacy-peer-deps && npm run build",
+  "buildCommand": "cd doctor-appointment-app/client && npm install --legacy-peer-deps && npm run build",
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "/index.html"
+      "dest": "doctor-appointment-app/client/index.html"
     }
   ]
 }
