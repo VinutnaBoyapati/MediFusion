@@ -6,12 +6,11 @@ MediFusion is a comprehensive healthcare management system designed to streamlin
 
 MediFusion consists of the following key systems:
 
-### 1. Appointment System
+### Appointment System
 
-- Allows patients to schedule appointments with doctors.
-- Provides real-time availability of doctors.
-- Ensures hassle-free booking and rescheduling.
-
+-Enables patients to book, reschedule, or cancel doctor appointments.
+-Displays real-time doctor availability.
+-Streamlines the entire scheduling process to reduce wait times.
 ### 2. Review System
 
 - Enables patients to provide feedback on their medical experience.
@@ -42,7 +41,7 @@ MediFusion consists of the following key systems:
 
 - **Vinutna Boyapati**
 - **Malavika Badam**
-- **Afreen**
+- **Maleeha Afreen**
 
 ### Integration of All Systems
 
