@@ -35,7 +35,7 @@ MediFusion consists of the following key systems:
 
 - **Dhanasree Gidijala**
 - **Ridhima**
-- **Tasneem**
+- **Tasneem kousar**
 
 ### Reminder & Red Alert System
 
